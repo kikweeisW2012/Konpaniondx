@@ -5,7 +5,7 @@ using UnityEngine;
 using static Satchel.EnemyUtils;
 using static Satchel.GameObjectUtils;
 
-namespace Konpanion
+namespace KonpanionDx
 {
     public enum State {
         Idle = 0,
@@ -262,7 +262,7 @@ namespace Konpanion
                 {
                     continue;
                 }
-                if (Konpanion.HasPouch()) { 
+                if (KonpanionDx.HasPouch()) { 
                     PouchIntegration.SendUpdate(this);
                 }
 

@@ -1,4 +1,4 @@
-﻿namespace Konpanion
+﻿namespace KonpanionDx
 {
     internal class Constants
     {

@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Konpanion
+namespace KonpanionDx
 {
     internal static class Utilities
     {

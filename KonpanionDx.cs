@@ -4,12 +4,12 @@ using UnityEngine;
 using static Satchel.EnemyUtils;
 using static Satchel.GameObjectUtils;
 
-namespace Konpanion
+namespace KonpanionDx
 {
-    public class Konpanion : Mod
+    public class KonpanionDx : Mod
     {
 
-        internal static Konpanion Instance;
+        internal static KonpanionDx Instance;
 
         internal static List<GameObject> knights = new List<GameObject>();
         internal static Dictionary<ushort,GameObject> remoteKnights = new Dictionary<ushort,GameObject>();
@@ -70,14 +70,14 @@ namespace Konpanion
         {
             Instance = this;
             ModHooks.HeroUpdateHook += update;
-            if (Konpanion.HasPouch())
+            if (KonpanionDx.HasPouch())
             {
                 PouchIntegration.Initialize();
             }
         }
 
 
-        public GameObject GetNetworkKonpanion(ushort id){
+        public GameObject GetNetworkKonpanionDx(ushort id){
             if(remoteKnights.TryGetValue(id,out var knight)){
                 return knight;
             }

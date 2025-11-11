@@ -2,11 +2,11 @@
 using System;
 using UnityEngine;
 
-namespace Konpanion
+namespace KonpanionDx
 {
     internal static class SafePouchIntegration
     {
-        internal static PipeClient pipe = new PipeClient("Konpanion");
+        internal static PipeClient pipe = new PipeClient("KonpanionDx");
 
     }
     internal static class PouchIntegration
@@ -14,14 +14,14 @@ namespace Konpanion
         internal static string oldUpdate = null;
         internal static void Initialize()
         {
-            SafePouchIntegration.pipe.On(KonpanionUpdateFactory.Instance).Do<KonpanionUpdate>(KonpanionUpdateHandler);
+            SafePouchIntegration.pipe.On(KonpanionDxUpdateFactory.Instance).Do<KonpanionDxUpdate>(KonpanionDxUpdateHandler);
         }
         internal static void SendUpdate(CompanionControl companionControl)
         {
             if (SafePouchIntegration.pipe != null && SafePouchIntegration.pipe.ClientApi != null && SafePouchIntegration.pipe.ClientApi.NetClient.IsConnected)
             {
 
-                var newUpdate = new KonpanionUpdate
+                var newUpdate = new KonpanionDxUpdate
                 {
                     pos = (Hkmp.Math.Vector2)(Vector2)companionControl.transform.position,
                     dir = companionControl.lookDirection,
@@ -36,9 +36,9 @@ namespace Konpanion
             }
         }
 
-        internal static void KonpanionUpdateHandler(KonpanionUpdate update)
+        internal static void KonpanionDxUpdateHandler(KonpanionDxUpdate update)
         {
-            var _go = Konpanion.Instance.GetNetworkKonpanion(update.FromPlayer);
+            var _go = KonpanionDx.Instance.GetNetworkKonpanionDx(update.FromPlayer);
             var _control = _go.GetComponent<CompanionControl>();
             _control.state = update.anim;
             _control.networkMovementTarget = new Vector2(update.pos.X, update.pos.Y);
