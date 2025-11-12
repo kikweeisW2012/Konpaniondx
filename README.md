@@ -1,6 +1,6 @@
-# KonpanionDx
+# WiddleKnight
  
-### KonpanionDx is a forked HKMPpouch mod that adds a little knight to keep you company (works with CustomKnight).
+### WiddleKnight is a forked HKMPpouch mod that adds a little knight to keep you company (works with CustomKnight).
 
 # 0.2.3.6
 **Removed dance/acid death animation.**
