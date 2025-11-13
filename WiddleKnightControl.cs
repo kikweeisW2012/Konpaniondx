@@ -31,7 +31,7 @@ namespace WiddleKnight
 
         public float scale = 0.6f;
         // needs to be 10 or its glitchy
-        public float moveSpeed = 10f;
+        public float moveSpeed = 11f;
         public float IdleShuffleDistance = 0.1f;
 
         public GameObject followTarget;

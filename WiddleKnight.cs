@@ -21,7 +21,7 @@ namespace WiddleKnight
         }
         public override string GetVersion()
         {
-            return "0.2.3.7";
+            return "0.2.3.11";
         }
 
         public GameObject createKnightcompanion(GameObject ft = null){
@@ -33,13 +33,13 @@ namespace WiddleKnight
             knight.RemoveComponent<HeroAudioController>();
             knight.RemoveComponent<ConveyorMovementHero>();
 
-            knight.name = "kompanion";
+            knight.name = "WiddleKnight";
             knight.GetAddComponent<MeshRenderer>().enabled = true;
             knight.GetAddComponent<Rigidbody2D>().gravityScale = 1f;
 
             var kc = knight.GetAddComponent<WiddleKnightControl>();
-            // needs to be 10 or its glitchy
-            kc.moveSpeed = 10f;
+            // needs to be 11 or its glitchy
+            kc.moveSpeed = 11f;
             kc.followDistance = 2f;
             kc.IdleShuffleDistance = 0.01f;
 
