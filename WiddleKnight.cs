@@ -6,11 +6,11 @@ using static Satchel.EnemyUtils;
 using static Satchel.GameObjectUtils;
 using System.IO;
 
-namespace Konpanion
+namespace WiddleKnight
 {
-    public class Konpanion : Mod, ICustomMenuMod
+    public class WiddleKnight : Mod, ICustomMenuMod
     {
-        internal static Konpanion Instance;
+        internal static WiddleKnight Instance;
 
         internal static List<GameObject> knights = new List<GameObject>();
         
@@ -24,9 +24,9 @@ namespace Konpanion
 
         public static bool HasPouch() => ModHooks.GetMod("HkmpPouch") is Mod;
         
-        public override string GetVersion() => "Release 1.0.0.0";
+        public override string GetVersion() => "pre-release 0.2.3.42";
 
-        // Creating Konpanion
+        // Creating WiddleKnight
         public GameObject createKnightcompanion(GameObject followTarget = null)
         {
             // Clone the player
@@ -42,13 +42,13 @@ namespace Konpanion
             knight.RemoveComponent<ConveyorMovementHero>();
 
             // properties
-            knight.name = "Konpanion";
+            knight.name = "WiddleKnight";
             knight.GetAddComponent<MeshRenderer>().enabled = true;
             knight.GetAddComponent<Rigidbody2D>().gravityScale = 1f;
 
             // behavior
-            var control = knight.GetAddComponent<KonpanionControl>();
-            control.moveSpeed = 10f;
+            var control = knight.GetAddComponent<WiddleKnightControl>();
+            control.moveSpeed = 10.5f; // Max speed
             control.followDistance = 2f;
             control.IdleShuffleDistance = 0.01f;
             control.followTarget = followTarget;
@@ -85,7 +85,7 @@ namespace Konpanion
             {
                 if (knight == null) return;
 
-                string modPath = Path.GetDirectoryName(typeof(Konpanion).Assembly.Location);
+                string modPath = Path.GetDirectoryName(typeof(WiddleKnight).Assembly.Location);
                 string skinsPath = Path.Combine(modPath, "Skins");
                 if (!Directory.Exists(skinsPath)) return;
 
@@ -209,7 +209,7 @@ namespace Konpanion
         }
 
         // network
-        public GameObject GetNetworkKonpanion(ushort id)
+        public GameObject GetNetworkWiddleKnight(ushort id)
         {
             if (remoteKnights.TryGetValue(id, out var knight))
                 return knight;
@@ -240,7 +240,7 @@ namespace Konpanion
             }
         }
 
-        // Destroy Konpanion on settings change
+        // Destroy WiddleKnight on settings change
         public void OnOptionChanged()
         {
             foreach (var knight in knights)
@@ -256,7 +256,7 @@ namespace Konpanion
 
         // Menu
         public MenuScreen GetMenuScreen(MenuScreen modListMenu, ModToggleDelegates? toggleDelegates) =>
-            KonpanionMenu.GetMenu(modListMenu);
+            WiddleKnightMenu.GetMenu(modListMenu);
 
         public bool ToggleButtonInsideMenu => false;
     }

@@ -2,9 +2,9 @@ using Satchel.BetterMenus;
 using System.IO;
 using System.Linq;
 
-namespace Konpanion
+namespace WiddleKnight
 {
-    internal class KonpanionMenu
+    internal class WiddleKnightMenu
     {
         private static Menu MenuRef;
         private static string[] availableSkins = new string[] { "No skins found" };
@@ -13,7 +13,7 @@ namespace Konpanion
         {
             LoadAvailableSkins();
 
-            var menu = new Menu("Konpanion Skin", new Element[]
+            var menu = new Menu("WiddleKnight Skin", new Element[]
             {
                 new HorizontalOption(
                     "Option",
@@ -21,12 +21,12 @@ namespace Konpanion
                     new string[] { "off", "CurrentKnight", "Custom" },
                     (index) => 
                     {
-                        Konpanion.Instance.GlobalSettings.SelectedSkinOption = index;
-                        Konpanion.Instance.SaveSettings();
-                        Konpanion.Instance.OnOptionChanged();
+                        WiddleKnight.Instance.GlobalSettings.SelectedSkinOption = index;
+                        WiddleKnight.Instance.SaveSettings();
+                        WiddleKnight.Instance.OnOptionChanged();
                         UpdateDescription();
                     },
-                    () => Konpanion.Instance.GlobalSettings.SelectedSkinOption,
+                    () => WiddleKnight.Instance.GlobalSettings.SelectedSkinOption,
                     Id: "SkinOption"
                 ),
                 new HorizontalOption(
@@ -35,11 +35,11 @@ namespace Konpanion
                     availableSkins,
                     (index) => 
                     {
-                        Konpanion.Instance.GlobalSettings.CustomSubOption = index;
-                        Konpanion.Instance.SaveSettings();
-                        Konpanion.Instance.OnOptionChanged();
+                        WiddleKnight.Instance.GlobalSettings.CustomSubOption = index;
+                        WiddleKnight.Instance.SaveSettings();
+                        WiddleKnight.Instance.OnOptionChanged();
                     },
-                    () => Konpanion.Instance.GlobalSettings.CustomSubOption,
+                    () => WiddleKnight.Instance.GlobalSettings.CustomSubOption,
                     Id: "CustomSubOption"
                 )
                 {
@@ -54,7 +54,7 @@ namespace Konpanion
         {
             try
             {
-                string modPath = Path.GetDirectoryName(typeof(Konpanion).Assembly.Location);
+                string modPath = Path.GetDirectoryName(typeof(WiddleKnight).Assembly.Location);
                 string skinsPath = Path.Combine(modPath, "Skins");
 
                 if (Directory.Exists(skinsPath))
@@ -64,24 +64,24 @@ namespace Konpanion
                     if (skinFolders.Length > 0)
                     {
                         availableSkins = skinFolders.Select(path => Path.GetFileName(path)).ToArray();
-                        Konpanion.Instance.Log($"Found {availableSkins.Length} skins: {string.Join(", ", availableSkins)}");
+                        WiddleKnight.Instance.Log($"Found {availableSkins.Length} skins: {string.Join(", ", availableSkins)}");
                     }
                     else
                     {
                         availableSkins = new string[] { "No skins found" };
-                        Konpanion.Instance.Log("Skins folder exists but is empty");
+                        WiddleKnight.Instance.Log("Skins folder exists but is empty");
                     }
                 }
                 else
                 {
                     availableSkins = new string[] { "No skins found" };
-                    Konpanion.Instance.Log($"Skins folder not found at: {skinsPath}");
+                    WiddleKnight.Instance.Log($"Skins folder not found at: {skinsPath}");
                 }
             }
             catch (System.Exception e)
             {
                 availableSkins = new string[] { "Error loading skins" };
-                Konpanion.Instance.LogError($"Error loading skins: {e.Message}");
+                WiddleKnight.Instance.LogError($"Error loading skins: {e.Message}");
             }
         }
 
@@ -94,7 +94,7 @@ namespace Konpanion
             
             if (skinOption != null)
             {
-                int selectedIndex = Konpanion.Instance.GlobalSettings.SelectedSkinOption;
+                int selectedIndex = WiddleKnight.Instance.GlobalSettings.SelectedSkinOption;
                 
                 if (selectedIndex == 0)
                 {
@@ -112,7 +112,7 @@ namespace Konpanion
 
             if (customSubOption != null)
             {
-                customSubOption.isVisible = Konpanion.Instance.GlobalSettings.SelectedSkinOption == 2;
+                customSubOption.isVisible = WiddleKnight.Instance.GlobalSettings.SelectedSkinOption == 2;
                 MenuRef.Update();
             }
         }

@@ -2,11 +2,11 @@
 using System;
 using UnityEngine;
 
-namespace Konpanion
+namespace WiddleKnight
 {
     internal static class SafePouchIntegration
     {
-        internal static PipeClient pipe = new PipeClient("Konpanion");
+        internal static PipeClient pipe = new PipeClient("WiddleKnight");
 
     }
     internal static class PouchIntegration
@@ -14,18 +14,18 @@ namespace Konpanion
         internal static string oldUpdate = null;
         internal static void Initialize()
         {
-            SafePouchIntegration.pipe.On(KonpanionUpdateFactory.Instance).Do<KonpanionUpdate>(KonpanionUpdateHandler);
+            SafePouchIntegration.pipe.On(WiddleKnightUpdateFactory.Instance).Do<WiddleKnightUpdate>(WiddleKnightUpdateHandler);
         }
-        internal static void SendUpdate(KonpanionControl KonpanionControl)
+        internal static void SendUpdate(WiddleKnightControl WiddleKnightControl)
         {
             if (SafePouchIntegration.pipe != null && SafePouchIntegration.pipe.ClientApi != null && SafePouchIntegration.pipe.ClientApi.NetClient.IsConnected)
             {
 
-                var newUpdate = new KonpanionUpdate
+                var newUpdate = new WiddleKnightUpdate
                 {
-                    pos = (Hkmp.Math.Vector2)(Vector2)KonpanionControl.transform.position,
-                    dir = KonpanionControl.lookDirection,
-                    anim = KonpanionControl.state
+                    pos = (Hkmp.Math.Vector2)(Vector2)WiddleKnightControl.transform.position,
+                    dir = WiddleKnightControl.lookDirection,
+                    anim = WiddleKnightControl.state
                 };
 
                 if (oldUpdate != newUpdate.ToString()) {
@@ -36,10 +36,10 @@ namespace Konpanion
             }
         }
 
-        internal static void KonpanionUpdateHandler(KonpanionUpdate update)
+        internal static void WiddleKnightUpdateHandler(WiddleKnightUpdate update)
         {
-            var _go = Konpanion.Instance.GetNetworkKonpanion(update.FromPlayer);
-            var _control = _go.GetComponent<KonpanionControl>();
+            var _go = WiddleKnight.Instance.GetNetworkWiddleKnight(update.FromPlayer);
+            var _control = _go.GetComponent<WiddleKnightControl>();
             _control.state = update.anim;
             _control.networkMovementTarget = new Vector2(update.pos.X, update.pos.Y);
             _control.lookDirection = update.dir;

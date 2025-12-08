@@ -5,7 +5,7 @@ using UnityEngine;
 using static Satchel.EnemyUtils;
 using static Satchel.GameObjectUtils;
 
-namespace Konpanion
+namespace WiddleKnight
 {
     public enum State {
         Idle = 0,
@@ -19,7 +19,7 @@ namespace Konpanion
         Left = 0,
         Right
     }
-    public class KonpanionControl : MonoBehaviour
+    public class WiddleKnightControl : MonoBehaviour
     {
 
         public bool isNetworkControlled = false;
@@ -264,7 +264,7 @@ namespace Konpanion
                 {
                     continue;
                 }
-                if (Konpanion.HasPouch()) { 
+                if (WiddleKnight.HasPouch()) { 
                     PouchIntegration.SendUpdate(this);
                 }
 
